@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mango.Services.ProductAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230510122741_AddProductModelToDb")]
+    [Migration("20230510190531_AddProductModelToDb")]
     partial class AddProductModelToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,11 +25,11 @@ namespace Mango.Services.ProductAPI.Migrations
 
             modelBuilder.Entity("Mango.Services.ProductAPI.Models.Product", b =>
                 {
-                    b.Property<int>("ProdictId")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProdictId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
@@ -40,13 +40,14 @@ namespace Mango.Services.ProductAPI.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.HasKey("ProdictId");
+                    b.HasKey("ProductId");
 
                     b.ToTable("Products");
                 });
